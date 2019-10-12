@@ -1,0 +1,19 @@
+http:
+  routers:
+    # TODO: define your router name, letsencrypt will issue tls cert with rule
+    my-router-1:
+      # TODO: define your domain name
+      rule: Host('router-1.your.domain.name')
+      # NOTE: entryPoints defined in traefik-static.yml
+      entryPoints:
+        - web-secure
+      tls:
+          # NOTE: certificatesResolvers defined in traefik-static.yml
+          certResolver: custom-challenge
+  services:
+    # TODO: define your service name
+    my-service-1:
+      loadBalancer:
+        server:
+          # TODO: change to your internal service
+          - url: "http://private-ip-server-1/"

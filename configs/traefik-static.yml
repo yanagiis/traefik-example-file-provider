@@ -1,0 +1,22 @@
+providers:
+  file:
+    filename: /etc/traefik/traefik-dynamic.yml
+
+entryPoints:
+  web:
+    address: ":80"
+  web-secure:
+    address: ":443"
+
+certificatesResolvers:
+  custom-challenge: # TODO: define your challenge name
+    acme:
+      email: your-email@your-domain.org # TODO: define your email address
+      storage: acme.json
+      tlsChallenge: {}
+
+api: {}
+
+# for traefik debug 
+log:
+  level: DEBUG
